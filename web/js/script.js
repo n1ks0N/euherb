@@ -1,13 +1,14 @@
 const $ = jQuery;
+let choosedProduct = null;
 
-const store = [];
-const main = (store) => {
+document.addEventListener('DOMContentLoaded', () => fetchProducts());
+
+const fetchProducts = () => {
   fetch('http://showcase.monstatis.com/api/products?page=1')
     .then(response => response.json())
     .then(result => {
-      store = result
-      console.log(store)
-      store.items.map(data => {
+      console.log(result.items)
+      result.items.map(data => {
         $('.site-main > .row').append(
           `<article id="${data.id}"
       class="col-lg-4 col-sm-4 col-md-4 latest-posts-grid post type-post status-publish format-standard has-post-thumbnail hentry category-50-off category-health-beauty"
@@ -18,7 +19,7 @@ const main = (store) => {
             <div class="categorised-article-wrapper">
               <div class="data-bg-hover data-bg data-bg-categorised"
                 data-background="${data.imageFile}" style="background-image: url(${data.imageFile})"> <a
-                  href="index-10.html"></a></div>
+                  href="index-10.html?id=${data.id}"></a></div>
               <div class="figure-categories figure-categories-bg">
                 <ul class="cat-links">
                   <li class="meta-category"> <a class="covernews-categories category-color-2" href="#"
@@ -43,22 +44,11 @@ const main = (store) => {
       </div>
     </article>`
         )
-        return 0
       })
     })
-
 }
-document.addEventListener('DOMContentLoaded', () => {
-  if (typeof store != 'undefined') {
-    main(store);
-  } else {
-    const store = {
 
-    };
-    main(store);
-  }
-});
-
-$('.row').on('click', 'div.spotlight-post', (e) => {
-  console.log('CLICK', e.currentTarget.id)
+$('.row').on('click', 'div.spotlight-post', (e) => { // переход в карточку товара
+  const id = e.currentTarget.id
+  choosedProduct = id
 })
