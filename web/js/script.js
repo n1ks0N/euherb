@@ -1,13 +1,11 @@
 const $ = jQuery;
-let choosedProduct = null;
 
-document.addEventListener('DOMContentLoaded', () => fetchProducts());
+document.addEventListener('DOMContentLoaded', () => getProducts());
 
-const fetchProducts = () => {
+const getProducts = () => {
   fetch('http://showcase.monstatis.com/api/products?page=1')
     .then(response => response.json())
     .then(result => {
-      console.log(result.items)
       result.items.map(data => {
         $('.site-main > .row').append(
           `<article id="${data.id}"
@@ -32,7 +30,7 @@ const fetchProducts = () => {
             </div>
           </figure>
           <figcaption>
-            <h3 class="article-title article-title-1"> <a href="index-10.html">${data.name}</a></h3>
+            <h3 class="article-title article-title-1"> <a href="index-10.html?id=${data.id}">${data.name}</a></h3>
             <div class="grid-item-metadata"> <span class="author-links"> </span></div>
             <div class="full-item-discription">
               <div class="post-description">
@@ -47,8 +45,3 @@ const fetchProducts = () => {
       })
     })
 }
-
-$('.row').on('click', 'div.spotlight-post', (e) => { // переход в карточку товара
-  const id = e.currentTarget.id
-  choosedProduct = id
-})

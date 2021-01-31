@@ -1,16 +1,22 @@
 const $ = jQuery;
 const getProps = window.location.search;
-const id = Number(getProps.split('=')[1]); // ?id=0 --> 0
+const idProduct = Number(getProps.split('=')[1]); // ?id=0 --> 0
 
-document.addEventListener('DOMContentLoaded', () => fetchProduct());
+document.addEventListener('DOMContentLoaded', () => {
+  if (idProduct) {
+    getProduct(idProduct)
+  } else {
+    getProduct(2)
+  }
+});
 
-const fetchProduct = () => {
+const getProduct = (id) => {
   fetch('http://showcase.monstatis.com/api/products?page=1')
     .then(response => response.json())
     .then(result => {
       let count = 0;
       result.items.map(data => {
-        if (count < 3) {
+        if (count < 3) { // вывод трёх товаров в раздел futured в карточке товара
           count++
           $('.em-reated-posts > .row > .row').append(
             `<article id="${data.id}"
@@ -35,7 +41,7 @@ const fetchProduct = () => {
               </div>
             </figure>
             <figcaption>
-              <h3 class="article-title article-title-1"> <a href="index-10.html">${data.name}</a></h3>
+              <h3 class="article-title article-title-1"> <a href="index-10.html?id=${data.id}">${data.name}</a></h3>
               <div class="grid-item-metadata"> <span class="author-links"> </span></div>
               <div class="full-item-discription">
                 <div class="post-description">
@@ -48,12 +54,13 @@ const fetchProduct = () => {
       </article>`
           )
         }
-        if (data.id === id) {
+        if (data.id === id) { // вывод нужной информации в карточку товара
           $('.ourprice').text(data.price)
           $('.entry-title').text(data.name)
           $('.description').append(data.description)
           $('.zoooom').attr('src', data.imageFile)
           $('.form-group__link').attr('href', data.link)
+          document.title = `${data.name}`
         }
       })
     })
