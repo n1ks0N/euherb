@@ -6,6 +6,7 @@ const getProducts = () => {
   fetch('http://showcase.monstatis.com/api/products?page=1')
     .then(response => response.json())
     .then(result => {
+      console.log(result)
       result.items.map(data => {
         $('.site-main > .row').append(
           `<article id="${data.id}"

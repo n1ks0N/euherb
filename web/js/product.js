@@ -1,6 +1,7 @@
 const $ = jQuery;
 const getProps = window.location.search;
 const idProduct = Number(getProps.split('=')[1]); // ?id=0 --> 0
+let paramsProduct = [];
 
 document.addEventListener('DOMContentLoaded', () => {
   if (idProduct) {
@@ -55,13 +56,44 @@ const getProduct = (id) => {
           )
         }
         if (data.id === id) { // вывод нужной информации в карточку товара
+          console.log(data)
+          paramsProduct = data
           $('.ourprice').text(data.price)
           $('.entry-title').text(data.name)
           $('.description').append(data.description)
-          $('.zoooom').attr('src', data.imageFile)
-          $('.form-group__link').attr('href', data.link)
+          $('.wp-block-image').html(`
+            <figure class="alignleft is-resized"><img src="${data.imageFile}" alt="Product"
+                class="wp-image-6342 zoooom" width="489" height="326" />
+              <figcaption><strong>*Best Price Guaranteed</strong></figcaption>
+            </figure>`)
+          // $('.zoooom').attr('src', data.imageFile)
+          // $('.form-group__link').attr('href', data.link)
           document.title = `${data.name}`
         }
       })
     })
-} 
+}
+
+$('.btn__click').click(() => {
+  const url = `http://showcase.monstatis.com/api/products/${idProduct}/order`
+  let data = {
+    phone: $('#phone').val(),
+    name: $('#name').val(),
+    params: paramsProduct
+  };
+
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      'X-Requested-With': 'XMLHttpRequest',
+      'Access-Control-Allow-Origin': '*'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => response.json())
+    .then(result => { 
+      console.log(result)
+      window.location.replace('thank-you.html')
+    });
+})
