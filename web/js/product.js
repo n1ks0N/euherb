@@ -1,7 +1,6 @@
 const $ = jQuery;
 const getProps = window.location.search;
 const idProduct = Number(getProps.split('=')[1]); // ?id=0 --> 0
-let paramsProduct = [];
 
 document.addEventListener('DOMContentLoaded', () => {
   if (idProduct) {
@@ -56,8 +55,6 @@ const getProduct = (id) => {
           )
         }
         if (data.id === id) { // вывод нужной информации в карточку товара
-          console.log(data)
-          paramsProduct = data
           $('.ourprice').text(data.price)
           $('.entry-title').text(data.name)
           $('.description').append(data.description)
@@ -65,9 +62,8 @@ const getProduct = (id) => {
             <figure class="alignleft is-resized"><img src="${data.imageFile}" alt="Product"
                 class="wp-image-6342 zoooom" width="489" height="326" />
               <figcaption><strong>*Best Price Guaranteed</strong></figcaption>
-            </figure>`)
-          // $('.zoooom').attr('src', data.imageFile)
-          // $('.form-group__link').attr('href', data.link)
+            </figure>
+          `)
           document.title = `${data.name}`
         }
       })
@@ -75,14 +71,25 @@ const getProduct = (id) => {
 }
 
 $('.btn__click').click(() => {
+
+  // получение query string значений
+  // example.com?a=1&b=2 => {a: '1', b: '2'}
+  const params = new URLSearchParams(getProps);
+  let paramObj = {};
+  for (let value of params.keys()) {
+    paramObj[value] = params.get(value);
+  }
+
+  // отправка данных post-запросом
+
   const url = `http://showcase.monstatis.com/api/products/${idProduct}/order`
-  let data = {
+  const data = {
     phone: $('#phone').val(),
     name: $('#name').val(),
-    params: paramsProduct
+    params: paramObj
   };
 
-  fetch(url, {
+  fetch('url', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -92,8 +99,7 @@ $('.btn__click').click(() => {
     body: JSON.stringify(data)
   })
     .then(response => response.json())
-    .then(result => { 
-      console.log(result)
-      window.location.replace('thank-you.html')
+    .then(result => {
     });
+    window.location.replace(`thank-you.html?n=${data.name}&ph=${data.phone}&p=${getProps}`)
 })
