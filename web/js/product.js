@@ -23,7 +23,7 @@ const getProduct = (id) => {
               <figcaption><strong>*Best Price Guaranteed</strong></figcaption>
             </figure>
           `)
-      document.title = `${result.name}`
+      document.title = `${result.name} — EuLift`
     })
   for (let i = 2; i < 5; i++) {
     fetch(`http://showcase.monstatis.com/api/products/${i}`)
