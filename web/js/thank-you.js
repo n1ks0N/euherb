@@ -1,14 +1,21 @@
 const $ = jQuery;
 
+// получение query string значений
+// example.com?a=1&b=2 => {a: '1', b: '2'}
 const getProps = window.location.search;
 const params = new URLSearchParams(getProps);
 let paramObj = {};
 for (let value of params.keys()) {
   paramObj[value] = params.get(value);
 }
-$('#title-name').text(`${paramObj.n}`)
-$('#title-phone').text(`${paramObj.ph}`)
-const sub15 = paramObj['sub15'] || ''
+
+$('#title-name').text(`${paramObj.name || ''}`)
+$('#title-phone').text(`${paramObj.phone || ''}`)
+$('#btn-back').attr('href', `product.html?id=${paramObj.id || '2'}`)
+
+const sub15 = paramObj['sub15'] || '0';
+
+// вставка нужного скрипта (google/fb)
 if (paramObj.sub14 === 'FB') {
   !function (f, b, e, v, n, t, s) {
     if (f.fbq) return; n = f.fbq = function () {
@@ -23,8 +30,7 @@ if (paramObj.sub14 === 'FB') {
   fbq('init', sub15);
   fbq('track', 'PageView');
   fbq('track', 'Lead');
-}
-else {
+} else {
   $('body').append(`
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-${sub15}"></script>
   <script>

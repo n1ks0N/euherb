@@ -18,7 +18,7 @@ const getProducts = () => {
             <div class="categorised-article-wrapper">
               <div class="data-bg-hover data-bg data-bg-categorised"
                 data-background="${data.imageFile}" style="background-image: url(${data.imageFile})"> <a
-                  href="index-10.html?id=${data.id}"></a></div>
+                  href="product.html?id=${data.id}"></a></div>
               <div class="figure-categories figure-categories-bg">
                 <ul class="cat-links">
                   <li class="meta-category"> <a class="covernews-categories category-color-2" href="#"
@@ -31,7 +31,7 @@ const getProducts = () => {
             </div>
           </figure>
           <figcaption>
-            <h3 class="article-title article-title-1"> <a href="index-10.html?id=${data.id}">${data.name}</a></h3>
+            <h3 class="article-title article-title-1"> <a href="product.html?id=${data.id}">${data.name}</a></h3>
             <div class="grid-item-metadata"> <span class="author-links"> </span></div>
             <div class="full-item-discription">
               <div class="post-description">
