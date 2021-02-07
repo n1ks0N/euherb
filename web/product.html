@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link media="all" href="images/autoptimize_08eea22a3375e1327be7acb75aae3ebe.css" rel="stylesheet" />
   <title>Product &mdash; EuLift</title>
-  <script type='text/javascript' src='images/jquery.js'></script>
-  <link rel="stylesheet" href="js/input-tel/css/intlTelInput.min.css">
+  <link media="all" href="css/product.css" rel="stylesheet" />
+  <link rel="stylesheet" href="js/libs/input-tel/css/intlTelInput.min.css">
+  <script type='text/javascript' src='js/libs/jquery/jquery.js'></script>
 </head>
 
 <body
@@ -99,10 +99,11 @@
                   </div>
                 </header>
                 <div class="entry-content" id="order-form"> Our Price: <span class="ourprice"></span>
-                  <script>var cntCodeID = "RS";</script>
+                  <!-- eTimer -->
                   <div class="eTimerA">
                     <div class="eTimer"></div>
                   </div>
+                  <!-- /eTimer -->
                   <div class="wp-block-image">
                     <figure class="alignleft is-resized"><img src="images/noimage.png" alt="Product"
                         class="wp-image-6342 zoooom" width="489" height="326" />
@@ -114,7 +115,6 @@
                     <form action="" method="POST"> <b style="font-size:16px">Your Name:</b>
                       <div class="form-group intl-tel-input allow-dropdown">
                         <div class="flag-container">
-                          <div class="selected-flag"><i class="fas fa-user icon-form"></i></div>
                         </div> <input type="text" id="name" class="form-control pad-inp" required="required"
                           placeholder="For example: Edward Smith" name="name">
                       </div> <b style="font-size:16px">Phone Number:</b>
@@ -147,7 +147,8 @@
                     <div class="text-call"> <i class="fas fa-phone"></i> <span>ORDER<br>NOW</span></div>
                   </div>
 
-                  <script src="js/input-tel/js/intlTelInput.min.js"></script>
+                  <!-- intlTelInput -->
+                  <script src="js/libs/input-tel/js/intlTelInput.min.js"></script>
                   <script>
                     var input = document.querySelector("#phone");
                     window.intlTelInput(input, {
@@ -162,9 +163,7 @@
                 <div class="em-reated-posts  col-ten">
                   <div class="row">
                     <h3 class="related-title">Featured Products</h3>
-                    <div class="row">
-
-                    </div>
+                    <div class="row"></div>
                   </div>
                 </div>
               </div>
@@ -222,16 +221,14 @@
       </div>
     </footer>
   </div> <a id="scroll-up" class="secondary-color"> <i class="fa fa-angle-up"></i> </a>
-  <script src="images/etimer.js"></script>
+  <script src="js/etimer.js"></script>
   <script>jQuery(document).ready(function () {
       jQuery(".eTimer").eTimer({
         etType: 1, etDate: "23.01.2019.0.0", etTitleText: "", etTitleSize: 20, etShowSign: 2, etSep: " ", etFontFamily: "Trebuchet MS", etTextColor: "#a3a3a3", etPaddingTB: 4, etPaddingLR: 11, etBackground: "", etBorderSize: 0, etBorderRadius: 0, etBorderColor: "white", etShadow: " 0px 0px 0px 0px #000", etLastUnit: 4, etNumberFontFamily: "Impact", etNumberSize: 28, etNumberColor: "white", etNumberPaddingTB: 0, etNumberPaddingLR: 4, etNumberBackground: "#ff0000", etNumberBorderSize: 0, etNumberBorderRadius: 2, etNumberBorderColor: "white", etNumberShadow: " 0px 2px 1px 0px rgba(0, 0, 0, 0.4)"
       });
     });</script>
-  <script type='text/javascript' src='images/theia-sticky-sidebar.min.js'></script>
-  <script type='text/javascript' src='images/script.js'></script>
-
-  <script src="js/product.js"></script>
+  <script type='text/javascript' src='js/script.js'></script>
+  <script src="js/API/product.js"></script>
 </body>
 
 </html>

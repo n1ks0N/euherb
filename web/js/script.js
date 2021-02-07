@@ -1,48 +1,118 @@
-const $ = jQuery;
+(function (e) {
+    "use strict";
+    var n = window.AFTHRAMPES_JS || {};
+    n.stickyMenu = function () {
+        e(window).scrollTop() > 350 ? e("#masthead").addClass("nav-affix") : e("#masthead").removeClass("nav-affix")
+    },
+        n.mobileMenu = {
+            init: function () {
+                this.toggleMenu(), this.menuMobile(), this.menuArrow()
+            },
+            toggleMenu: function () {
+                e('#masthead').on('click', '.toggle-menu', function (event) {
+                    var ethis = e('.main-navigation .menu .menu-mobile');
+                    if (ethis.css('display') == 'block') {
+                        ethis.slideUp('300');
+                    } else {
+                        ethis.slideDown('300');
+                    }
+                    e('.ham').toggleClass('exit');
+                });
+                e('#masthead .main-navigation ').on('click', '.menu-mobile a i', function (event) {
+                    event.preventDefault();
+                    var ethis = e(this),
+                        eparent = ethis.closest('li'),
+                        esub_menu = eparent.find('> .sub-menu');
+                    if (esub_menu.css('display') == 'none') {
+                        esub_menu.slideDown('300');
+                        ethis.addClass('active');
+                    } else {
+                        esub_menu.slideUp('300');
+                        ethis.removeClass('active');
+                    }
+                    return false;
+                });
+            },
+            menuMobile: function () {
+                if (e('.main-navigation .menu > ul').length) {
+                    var ethis = e('.main-navigation .menu > ul'),
+                        eparent = ethis.closest('.main-navigation'),
+                        pointbreak = eparent.data('epointbreak'),
+                        window_width = window.innerWidth;
+                    if (typeof pointbreak == 'undefined') {
+                        pointbreak = 991;
+                    }
+                    if (pointbreak >= window_width) {
+                        ethis.addClass('menu-mobile').removeClass('menu-desktop');
+                        e('.main-navigation .toggle-menu').css('display', 'block');
+                    } else {
+                        ethis.addClass('menu-desktop').removeClass('menu-mobile').css('display', '');
+                        e('.main-navigation .toggle-menu').css('display', '');
+                    }
+                }
+            },
+            menuArrow: function () {
+                if (e('#masthead .main-navigation div.menu > ul').length) {
+                    e('#masthead .main-navigation div.menu > ul .sub-menu').parent('li').find('> a').append('<i class="fa fa-angle-down">');
+                }
+            }
+        },
 
-document.addEventListener('DOMContentLoaded', () => getProducts());
 
-const getProducts = () => {
-  fetch('http://showcase.monstatis.com/api/products?page=1')
-    .then(response => response.json())
-    .then(result => {
-      console.log(result)
-      result.items.map(data => {
-        $('.site-main > .row').append(
-          `<article id="${data.id}"
-      class="col-lg-4 col-sm-4 col-md-4 latest-posts-grid post type-post status-publish format-standard has-post-thumbnail hentry category-50-off category-health-beauty"
-      data-mh="archive-layout-grid">
-      <div class="align-items-center">
-        <div class="spotlight-post" id="${data.id}">
-          <figure class="categorised-article inside-img">
-            <div class="categorised-article-wrapper">
-              <div class="data-bg-hover data-bg data-bg-categorised"
-                data-background="${data.imageFile}" style="background-image: url(${data.imageFile})"> <a
-                  href="product.html?id=${data.id}"></a></div>
-              <div class="figure-categories figure-categories-bg">
-                <ul class="cat-links">
-                  <li class="meta-category"> <a class="covernews-categories category-color-2" href="#"
-                      alt="View all posts in 50% OFF"> 50% OFF </a></li>
-                  <li class="meta-category"> <a class="covernews-categories category-color-1" href="#"
-                      alt="View all posts in Health &amp; Beauty"> Health &amp; Beauty
-                    </a></li>
-                </ul>
-              </div>
-            </div>
-          </figure>
-          <figcaption>
-            <h3 class="article-title article-title-1"> <a href="product.html?id=${data.id}">${data.name}</a></h3>
-            <div class="grid-item-metadata"> <span class="author-links"> </span></div>
-            <div class="full-item-discription">
-              <div class="post-description">
-                <p></p>
-              </div>
-            </div>
-          </figcaption>
-        </div>
-      </div>
-    </article>`
-        )
-      })
+        n.DataBackground = function () {
+            var pageSection = e(".data-bg");
+            pageSection.each(function (indx) {
+                if (e(this).attr("data-background")) {
+                    e(this).css("background-image", "url(" + e(this).data("background") + ")");
+                }
+            });
+
+            e('.bg-image').each(function () {
+                var src = e(this).children('img').attr('src');
+                e(this).css('background-image', 'url(' + src + ')').children('img').hide();
+            });
+        },
+
+        n.Preloader = function () {
+            e(window).load(function () {
+                e('#loader-wrapper').fadeOut();
+                e('#af-preloader').delay(500).fadeOut('slow');
+
+            });
+        },
+
+        n.Search = function () {
+            e(window).load(function () {
+                e(".af-search-click").on('click', function(){
+                    e("#af-search-wrap").toggleClass("af-search-toggle");
+                });
+            });
+        },
+
+        // SHOW/HIDE SCROLL UP //
+        n.show_hide_scroll_top = function () {
+            if (e(window).scrollTop() > e(window).height()*0.9) {
+                e("#scroll-up").fadeIn(300);
+            } else {
+                e("#scroll-up").fadeOut(300);
+            }
+        },
+
+        n.scroll_up = function () {
+            e("#scroll-up").on("click", function () {
+                e("html, body").animate({
+                    scrollTop: 300
+                }, 800);
+                return false;
+            });
+        },
+
+
+        e(document).ready(function () {
+            n.mobileMenu.init(), n.DataBackground(), n.Preloader(), n.Search(), n.scroll_up();
+        }), e(window).scroll(function () {
+        n.stickyMenu(), n.show_hide_scroll_top();
+    }), e(window).resize(function () {
+        n.mobileMenu.menuMobile();
     })
-}
+})(jQuery);

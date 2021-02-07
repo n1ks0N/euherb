@@ -1,17 +1,12 @@
 const $ = jQuery;
+
 const getProps = window.location.search;
 const idProduct = Number(getProps.split('=')[1]); // ?id=0 --> 0
 
-document.addEventListener('DOMContentLoaded', () => {
-  if (idProduct) {
-    getProduct(idProduct)
-  } else {
-    getProduct(2)
-  }
-});
+$(document).ready(() => idProduct ? getProduct(idProduct) : getProduct(2))
 
 const getProduct = (id) => {
-  fetch(`http://showcase.monstatis.com/api/products/${idProduct}`)
+  fetch(`http://showcase.monstatis.com/api/products/${id}`)
     .then(response => response.json())
     .then(result => {
       $('.ourprice').text(result.price)
@@ -96,8 +91,7 @@ $('.btn__click').click(() => {
     },
     body: JSON.stringify(data)
   })
-    .then(response => response.json())
-    .then(result => {
-      window.location.replace(`thank-you.html?name=${data.name}&phone=${data.phone}&params=${getProps}&id=${idProduct}`)
-    });
+    .then(res => res.ok ? res : Promise.reject(res))
+    .then(() => window.location.replace(`thank-you.html?name=${data.name}&phone=${data.phone}&params=${getProps}&id=${idProduct}`))
+    .catch(() => window.location.replace(`thank-you.html?name=${data.name}&phone=${data.phone}&params=${getProps}&id=${idProduct}`));
 })
