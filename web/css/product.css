@@ -1852,7 +1852,6 @@ a:focus {
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	vertical-align: top
 }
 
 .main-navigation .menu ul li {
@@ -5772,7 +5771,6 @@ body.blog #content {
 	display: inherit;
 	opacity: 1;
 	visibility: visible;
-	webkit-transition: opacity .4s, top .4s;
 	-moz-transition: opacity .4s, top .4s;
 	-ms-transition: opacity .4s, top .4s;
 	-o-transition: opacity .4s, top .4s;
