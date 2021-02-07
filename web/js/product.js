@@ -87,7 +87,7 @@ $('.btn__click').click(() => {
     params: paramObj
   };
 
-  fetch('url', {
+  fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -98,6 +98,6 @@ $('.btn__click').click(() => {
   })
     .then(response => response.json())
     .then(result => {
+      window.location.replace(`thank-you.html?name=${data.name}&phone=${data.phone}&params=${getProps}&id=${idProduct}`)
     });
-  window.location.replace(`thank-you.html?name=${data.name}&phone=${data.phone}&params=${getProps}&id=${idProduct}`)
 })
