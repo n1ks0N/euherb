@@ -7,12 +7,13 @@
   <title>Product &mdash; EuLift</title>
   <link media="all" href="css/product.css" rel="stylesheet" />
   <link rel="stylesheet" href="js/libs/input-tel/css/intlTelInput.min.css">
-  <script type='text/javascript' src='js/libs/jquery/jquery.js'></script>
+  <script type='text/javascript' src="js/libs/jquery/jquery.js"></script>
 </head>
 
 <body
   class="post-template-default single single-post postid-6341 single-format-standard default-content-layout full-width-content">
-  <div id="page" class="site"> <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+  <div id="page" class="site">
+    <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
     <header id="masthead" class="site-header">
       <div class="masthead-banner data-bg" data-background="images/head.jpg">
         <div class="container">
@@ -40,8 +41,8 @@
             <div class="kol-12">
               <div class="navigation-container">
                 <span class="toggle-menu" aria-controls="primary-menu" aria-expanded="false"> <span
-                    class="screen-reader-text">Primary Menu</span> <i class="ham"></i> </span> <span
-                  class="af-mobile-site-title-wrap">
+                    class="screen-reader-text">Primary Menu</span> <i class="ham"></i> </span>
+                <span class="af-mobile-site-title-wrap">
                   <p class="site-title font-family-1"> <a href="index.html" rel="home">EuLift</a></p>
                 </span>
                 <div class="menu main-menu">
@@ -94,47 +95,65 @@
                           </li>
                         </ul>
                       </div>
-                      <h1 class="entry-title"></h1> <span class="author-links"> </span>
+                      <h1 class="entry-title"></h1>
+                      <span class="author-links"> </span>
                     </div>
                   </div>
                 </header>
-                <div class="entry-content" id="order-form"> Our Price: <span class="ourprice"></span>
+                <div class="entry-content" id="order-form">
+                  Our Price: <span class="ourprice"></span>
                   <!-- eTimer -->
                   <div class="eTimerA">
                     <div class="eTimer"></div>
                   </div>
                   <!-- /eTimer -->
                   <div class="wp-block-image">
-                    <figure class="alignleft is-resized"><img src="images/noimage.png" alt="Product"
-                        class="wp-image-6342 zoooom" width="489" height="326" />
+                    <figure class="alignleft is-resized">
+                      <img src="images/noimage.png" alt="Product" class="wp-image-6342 zoooom" width="489"
+                        height="326" />
                       <figcaption><strong>*Best Price Guaranteed</strong></figcaption>
                     </figure>
                   </div>
                   <div class="col-lg-4">
                     <h3 class="form-cast form-top-head">Special offer! 50% OFF</h3>
-                    <form action="" method="POST"> <b style="font-size:16px">Your Name:</b>
+                    <form action="" method="POST">
+                      <b style="font-size:16px">Your Name:</b>
                       <div class="form-group intl-tel-input allow-dropdown">
                         <div class="flag-container">
-                        </div> <input type="text" id="name" class="form-control pad-inp" required="required"
+                        </div>
+                        <input type="text" id="name" class="form-control pad-inp" required="required"
                           placeholder="For example: Edward Smith" name="name">
-                      </div> <b style="font-size:16px">Phone Number:</b>
+                      </div>
+                      <!-- input-tel -->
+                      <b style="font-size:16px">Phone Number:</b>
                       <div class="form-group"> <input id="phone" type="text" class="form-control" required="required"
                           placeholder="+7 912 345-67-89" name="phone"></div>
-                      <div class="form-group"> <input type="checkbox" checked="checked" required="required"
-                          class="chek-privacy">
+                      <script src="js/libs/input-tel/js/intlTelInput.min.js"></script>
+                      <script>
+                        var input = document.querySelector("#phone");
+                        window.intlTelInput(input, {
+                          // any initialisation options go here
+                        });
+                      </script>
+                      <!-- /input-tel -->
+                      <div class="form-group">
+                        <input type="checkbox" checked="checked" required="required" class="chek-privacy">
                         <div class="yes-msg">I represent that I am 18 years or older, I agree to EuLift's <a href="#"
                             target="_blank" rel="noopener noreferrer">Terms of Use</a> and
                           acknowledge I have read EuLift's <a href="#" target="_blank" rel="noopener noreferrer">Privacy
-                            Policy</a>.</div>
+                            Policy</a>.
+                        </div>
                       </div>
                     </form>
-                    <div class="form-group"><a class="form-group__link" href="#"><button
-                          class="col-lg-4 batt-a btn__click" name="order_place">ORDER NOW</button></a>
+                    <div class="form-group">
+                      <a class="form-group__link" href="#"><button class="col-lg-4 batt-a btn__click"
+                          name="order_place">ORDER NOW</button></a>
                       <a class="form-group__link" href="#"><button class="col-lg-4 batt-b btn__click"
                           name="order_place">CONSULTATION</button></a>
                       <div style="clear:left"></div>
                       <div style="font-size:8pt;margin:8px 0;"><i class="fas fa-lock" style="color:#34a853;"></i>
-                        Secured by 256 bit SSL Encryption</div>
+                        Secured by 256 bit SSL Encryption
+                      </div>
                     </div>
                   </div>
                   <div style="clear:left"></div>
@@ -146,16 +165,6 @@
                   <div type="button" class="callback-bt" id="scroll-up">
                     <div class="text-call"> <i class="fas fa-phone"></i> <span>ORDER<br>NOW</span></div>
                   </div>
-
-                  <!-- intlTelInput -->
-                  <script src="js/libs/input-tel/js/intlTelInput.min.js"></script>
-                  <script>
-                    var input = document.querySelector("#phone");
-                    window.intlTelInput(input, {
-                      // any initialisation options go here
-                    });
-                  </script>
-
                   <div class="post-item-metadata entry-meta"></div>
                 </div>
               </div>
@@ -186,7 +195,8 @@
                     <div id="custom_html-4" class="widget_text widget covernews-widget widget_custom_html">
                       <div class="textwidget custom-html-widget">
                         <p> <a href="#">About Us</a><br><a href="#">Terms of Use
-                            Agreement</a><br> <a href="#">Privacy Policy</a></p>
+                            Agreement</a><br> <a href="#">Privacy Policy</a>
+                        </p>
                       </div>
                     </div>
                   </section>
@@ -220,14 +230,16 @@
         </div>
       </div>
     </footer>
-  </div> <a id="scroll-up" class="secondary-color"> <i class="fa fa-angle-up"></i> </a>
+  </div>
+  <a id="scroll-up" class="secondary-color"> <i class="fa fa-angle-up"></i> </a>
   <script src="js/etimer.js"></script>
   <script>jQuery(document).ready(function () {
       jQuery(".eTimer").eTimer({
         etType: 1, etDate: "23.01.2019.0.0", etTitleText: "", etTitleSize: 20, etShowSign: 2, etSep: " ", etFontFamily: "Trebuchet MS", etTextColor: "#a3a3a3", etPaddingTB: 4, etPaddingLR: 11, etBackground: "", etBorderSize: 0, etBorderRadius: 0, etBorderColor: "white", etShadow: " 0px 0px 0px 0px #000", etLastUnit: 4, etNumberFontFamily: "Impact", etNumberSize: 28, etNumberColor: "white", etNumberPaddingTB: 0, etNumberPaddingLR: 4, etNumberBackground: "#ff0000", etNumberBorderSize: 0, etNumberBorderRadius: 2, etNumberBorderColor: "white", etNumberShadow: " 0px 2px 1px 0px rgba(0, 0, 0, 0.4)"
       });
-    });</script>
-  <script type='text/javascript' src='js/script.js'></script>
+    });
+  </script>
+  <script type='text/javascript' src="js/script.js"></script>
   <script src="js/API/product.js"></script>
 </body>
 
