@@ -35,8 +35,8 @@ const getProduct = (id) => {
     .then(response => response.json())
     .then(result => {
       let count = 0; // счётчик для трёх товаров
-      result.items.map((data) => {
-        if (data.id !== id && count < 3) {
+      result.items.some((data) => {
+        if (data.id !== Number(id) && count < 3) {
           count++;
           $('.em-reated-posts > .row > .row').append(
             `<article id="${data.id}"
